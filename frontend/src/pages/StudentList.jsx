@@ -16,7 +16,7 @@ const StudentList = () => {
   const fetchStudents = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://student-management-1-oil5.onrender.com/api/student');
+      const response = await axios.get('https://management-sys-urvp.onrender.com/api/student');
       setStudents(response.data);
       setLoading(false);
     } catch (error) {
