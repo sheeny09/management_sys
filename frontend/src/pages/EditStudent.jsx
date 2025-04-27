@@ -114,7 +114,7 @@ const EditStudent = () => {
     }
     
     try {
-      await axios.put(`https://student-management-1-oil5.onrender.com/api/student/${id}`, formData);
+      await axios.put(`https://management-sys-urvp.onrender.com/api/student/${id}`, formData);
       toast.success('Student updated successfully');
       navigate('/students');
     } catch (error) {
