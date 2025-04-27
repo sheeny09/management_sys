@@ -25,7 +25,7 @@ const EditStudent = () => {
     const fetchStudent = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://student-management-1-oil5.onrender.com/api/student/${id}`);
+        const response = await axios.get(`https://management-sys-urvp.onrender.com/api/student/${id}`);
         const student = response.data;
         
         // Format date to YYYY-MM-DD for input[type="date"]
