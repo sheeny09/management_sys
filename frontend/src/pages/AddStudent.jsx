@@ -87,7 +87,7 @@ const AddStudent = () => {
     }
     
     try {
-      await axios.post('https://student-management-1-oil5.onrender.com/api/student', formData);
+      await axios.post('https://management-sys-urvp.onrender.com/api/student', formData);
       toast.success('Student added successfully');
       navigate('/students');
     } catch (error) {
