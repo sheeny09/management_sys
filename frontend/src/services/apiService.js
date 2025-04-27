@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://student-management-1-oil5.onrender.com/api';
+const API_BASE_URL = 'https://management-sys-urvp.onrender.com/api';
 
 const apiService = {
   // Student endpoints
