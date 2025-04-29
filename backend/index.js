@@ -4,6 +4,9 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 
+const cors = require('cors');
+app.use(cors());
+
 // Connect to DB
 require('./Models/db');
 
