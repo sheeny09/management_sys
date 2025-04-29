@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET /students - Fetch all students
-router.get('/', async (req, res) => {
+router.get('/students', async (req, res) => {
   try {
     const students = await Student.find().select('-__v');
     res.json(students);
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /students/:id - Fetch a student by ID
-router.get('/:id', async (req, res) => {
+router.get('/students/:id', async (req, res) => {
   try {
     const student = await Student.findById(req.params.id).select('-__v');
     if (!student) return res.status(404).json({ error: 'Student not found' });
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // PUT /students/:id - Update student information
-router.put('/:id', async (req, res) => {
+router.put('/students/:id', async (req, res) => {
   try {
     const student = await Student.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /students/:id - Delete a student
-router.delete('/:id', async (req, res) => {
+router.delete('/students/:id', async (req, res) => {
   try {
     const student = await Student.findByIdAndDelete(req.params.id).select('-__v');
     if (!student) return res.status(404).json({ error: 'Student not found' });
