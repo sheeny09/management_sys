@@ -1,0 +1,139 @@
+/* Home.css */
+
+.home-page {
+  padding: 30px;
+  background-color: #f8f9fa; /* Light background */
+}
+
+.jumbotron {
+  background-color: #e9ecef; /* Light gray jumbotron background */
+  padding: 2rem 1rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  font-weight: bold;
+  color: #333;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.bg-info {
+  background-color: #17a2b8 !important;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+.display-3 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.row.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 1.5rem;
+}
+
+.stats-row > div {
+  flex: 1 0 calc(33.33% - 30px);
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  .lead {
+    font-size: 1rem;
+  }
+  .display-3 {
+    font-size: 2.5rem;
+  }
+  .stats-row {
+    gap: 15px;
+  }
+  .stats-row > div {
+    flex-basis: 100%;
+  }
+  .col-md-4 { /* Revert to col-md-4 for the department cards */
+    width: 100%;
+    margin-bottom: 15px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.card.border-primary .card-body {
+  border: 1px solid #007bff;
+  border-radius: 0.25rem;
+}
