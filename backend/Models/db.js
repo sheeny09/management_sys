@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URI = process.env.MONGO_URI;
 
 // Check if MONGO_URL is defined
-if (!MONGO_URL) {
+if (!MONGO_URI) {
   console.error('MONGO_URL is not defined in environment variables');
   process.exit(1); // Exit with error
 }
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connected successfully');
   })
