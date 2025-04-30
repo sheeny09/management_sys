@@ -23,7 +23,7 @@ const AddStudentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/students', student);
+      await axios.post('https://management-sys-backend.onrender.com/students', student);
       Swal.fire('Success!', 'Student added successfully!', 'success');
       navigate('/students');
     } catch (error) {
