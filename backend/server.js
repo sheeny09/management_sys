@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 console.log('MONGODB_URI from server.js:', process.env.MONGODB_URI);
 connectDB();
 
-app.use(cors({ origin: 'http://localhost:3000' })); // Allow requests from localhost:3000
+app.use(cors({ origin: 'https://management-sys-frontend.onrender.com' })); // Allow requests from localhost:3000
 app.use(express.json());
 
 app.use('/students', studentRoutes);
