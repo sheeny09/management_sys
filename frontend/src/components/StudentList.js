@@ -1,43 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './StudentList.css';
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+const StudentList = () => {
+  const [students, setStudents] = useState([]);
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  useEffect(() => {
+    fetchStudents();
+  }, []);
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+  const fetchStudents = async () => {
+    try {
+      const response = await axios.get('https://management-sys-backend.onrender.com/students');
+      setStudents(response.data);
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`https://management-sys-backend.onrender.com/students/${id}`);
+      fetchStudents();
+    } catch (error) {
+      console.error('Error deleting student:', error);
+    }
+  };
+
+  return (
+    <div className="student-list-container" style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
+      <h2 className="mb-4">Student List</h2>
+      <Link to="/add" className="btn btn-primary mb-3"><button >Add New Student</button></Link>
+      <table className="table table-bordered table-hover" style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead>
+          <tr style={{ backgroundColor: '#f8f9fa' }}>
+            <th style={tableHeaderStyle}>Student ID</th>
+            <th style={tableHeaderStyle}>First Name</th>
+            <th style={tableHeaderStyle}>Last Name</th>
+            <th style={tableHeaderStyle}>Email</th>
+            <th style={tableHeaderStyle}>DOB</th>
+            <th style={tableHeaderStyle}>Department</th>
+            <th style={tableHeaderStyle}>Enrollment Year</th>
+            <th style={tableHeaderStyle}>Active</th>
+            <th style={tableHeaderStyle}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.length === 0 ? (
+            <tr>
+              <td colSpan="9" className="text-center" style={{ padding: '10px' }}>No students found.</td>
+            </tr>
+          ) : (
+            students.map(student => (
+              <tr key={student._id}>
+                <td style={tableCellStyle}>{student.studentId}</td>
+                <td style={tableCellStyle}>{student.firstname}</td>
+                <td style={tableCellStyle}>{student.lastname}</td>
+                <td style={tableCellStyle}>{student.email}</td>
+                <td style={tableCellStyle}>{student.dob}</td>
+                <td style={tableCellStyle}>{student.department}</td>
+                <td style={tableCellStyle}>{student.enrollmentYear}</td>
+                <td style={tableCellStyle}>{student.isactive ? 'Yes' : 'No'}</td>
+                <td style={tableCellStyle}>
+                  <div className="action-buttons" style={{ display: 'flex', gap: '5px' }}>
+                    <Link to={`/edit/${student._id}`} className="edit-btn" style={actionButtonStyle}>Edit</Link>
+                    <button onClick={() => handleDelete(student._id)} className="delete-btn" style={actionButtonStyle}>Delete</button>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const tableHeaderStyle = {
+  padding: '10px',
+  border: '1px solid #dee2e6',
+  fontWeight: 'bold',
+  textAlign: 'left',
+};
+
+const tableCellStyle = {
+  padding: '10px',
+  border: '1px solid #dee2e6',
+};
+
+const actionButtonStyle = {
+  padding: '5px 10px',
+  borderRadius: '5px',
+  border: 'none',
+  cursor: 'pointer',
+  fontSize: '0.9rem',
+};
+
+export default StudentList;
