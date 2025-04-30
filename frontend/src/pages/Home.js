@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/student');
+        const response = await axios.get('https://management-sys-backend.onrender.com/students');
         const students = response.data;
 
         // Calculate stats
